@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table style = "margin: 0 auto; width: 60%; border: 2px solid black;">
+        <thead>
+            <tr>
+                <th> Type </th>
+                <th> Symbol </th>
+                <th> Number Of Stock(s) </th>
+                <th> Price </th>
+                <th> Time </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in e %}
+                <tr>
+                    <td> {{stock.t}} </td>
+                    <td> {{stock.symbol}} </td>
+                    {% if stock.number < 0 %}
+                        {% set a = -1*stock.number %}
+                        <td>{{a}}</td>
+                    {%else%}
+                        <td> {{stock.number}} </td>
+                    {%endif%}
+                    <td> {{stock.price | usd}} </td>
+                    <td> {{stock.tt}} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

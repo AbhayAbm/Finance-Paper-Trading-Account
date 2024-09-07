@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <h4 style = "text-align: left">Cash Balance: {{user[0].cash | usd }}</h4>
+    <h4 style = "text-align: left">Stock Holding: {{sum | usd }}</h4>
+    <h4 style = "text-align: left">Grand Total: {{(user[0].cash + sum) | usd }}</h4>
+
+    <table style = "margin: 0 auto; width: 37.5%; border: 2px solid black;">
+        <thead>
+            <tr>
+                <th> Symbol </th>
+                <th> Number Of Stocks </th>
+                <th> Current Price </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td> {{stock.symbol}} </td>
+                    <td> {{stock.total}} </td>
+                    <td> {{d[stock.symbol] | usd }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
